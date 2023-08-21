@@ -3,6 +3,9 @@ package com.tictactoegame;
 import java.util.Scanner;
 
 public class Game {
+    private static final String MESAGE_ON_WON = "You won the game!\nCreated by Shreyas Saha. Thanks for playing!";
+    private static final String MESAGE_ON_LOST = "You lost the game!\nCreated by Shreyas Saha. Thanks for playing!";
+    private static final String MESAGE_ON_DRAW = "It's a draw!\nCreated by Shreyas Saha. Thanks for playing!";
     private final Box box = new Box();
 
     private static final Scanner scan = new Scanner(System.in);
@@ -11,13 +14,15 @@ public class Game {
         while (true) {
             final byte input = scan.nextByte();
             if (input > 0 && input < 10) {
-                if (box.isBoxEmpty((byte) (input - 1)))
+                if (box.isBoxEmpty((byte) (input - 1))) {
                     System.out.println("That one is already in use. Enter another.");
+                }
                 else {
                     return input;
                 }
-            } else
+            } else {
                 System.out.println("Invalid input. Enter again.");
+            }
         }
     }
 
@@ -50,7 +55,6 @@ public class Game {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -65,18 +69,23 @@ public class Game {
             return WINRESULT.DRAW;
         } else if (playPCAndCheckIfWin()) {
             return WINRESULT.LOST;
-        } else return WINRESULT.GOING;
+        } else {
+            return WINRESULT.GOING; }
     }
 
     public void play() {
-        while (true) {
-            box.printBoxInfo();
+        try {
+            while (true) {
+                box.printBoxInfo();
 
-            final WINRESULT result = playStrategy();
-            if (result != WINRESULT.GOING) {
-                writeWinningMessage(result);
-                return;
+                final WINRESULT result = playStrategy();
+                if (result != WINRESULT.GOING) {
+                    writeWinningMessage(result);
+                    return;
+                }
             }
+        } finally {
+            scan.close();
         }
     }
 
@@ -89,8 +98,4 @@ public class Game {
             System.out.println(MESAGE_ON_DRAW);
         }
     }
-
-    private static final String MESAGE_ON_WON = "You won the game!\nCreated by Shreyas Saha. Thanks for playing!";
-    private static final String MESAGE_ON_LOST = "You lost the game!\nCreated by Shreyas Saha. Thanks for playing!";
-    private static final String MESAGE_ON_DRAW = "It's a draw!\nCreated by Shreyas Saha. Thanks for playing!";
 }
