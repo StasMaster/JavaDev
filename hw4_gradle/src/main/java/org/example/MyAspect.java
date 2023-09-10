@@ -3,22 +3,20 @@ package org.example;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.DeclarePrecedence;
+
 @Aspect
 @DeclarePrecedence("MyAspect, StringTransformer")
 public class MyAspect {
-    private boolean loggingEnabled = true; // Глобальный флаг для управления логированием
+    private boolean loggingEnabled = true;
 
-    // Метод для включения логирования
     public void enableLogging() {
         loggingEnabled = true;
     }
 
-    // Метод для отключения логирования
     public void disableLogging() {
         loggingEnabled = false;
     }
 
-    // Метод для логирования начального значения строки
     @Before("execution(* StringTransformer.main(String)) && args(input)")
     public void logInput(String input) {
         if (loggingEnabled) {
@@ -26,7 +24,6 @@ public class MyAspect {
         }
     }
 
-    // Метод для логирования преобразованного значения строки
     @Before("execution(* StringTransformer.transformString(String)) && args(transformed)")
     public void logTransformed(String transformed) {
         if (loggingEnabled) {
