@@ -17,7 +17,7 @@ public class Fibonacci {
         }
     }
 
-    private static long[] memo = new long[100]; // Массив для мемоизации
+    private static long[] memo = new long[100];
     public static long fibonacciRecursive(int n) {
         if (n <= 0) {
             return 0;
