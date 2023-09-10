@@ -7,13 +7,12 @@ public class StringTransformer {
         System.out.println("Введите строку:");
         String input = scanner.nextLine();
 
-        MyAspect myAspect = new MyAspect(); // Создаем экземпляр аспекта
-        myAspect.logInput(input); // Вызываем метод аспекта для логирования
+        MyAspect myAspect = new MyAspect();
+        myAspect.logInput(input);
 
-        // Выполните преобразование строки
         String transformed = transformString(input);
 
-        myAspect.logTransformed(transformed); // Вызываем метод аспекта для логирования преобразованной строки
+        myAspect.logTransformed(transformed);
         scanner.close();
     }
 
