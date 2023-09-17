@@ -1,0 +1,11 @@
+@startuml Fibonacci
+
+class Fibonacci {
+  +fibonacciIterative(n: int): long
+  +fibonacciRecursive(n: int): long
+  +fibonacciDynamic(n: int): long
+  -memo: long[100]
+  +main(args: String[]): void
+}
+
+@enduml
